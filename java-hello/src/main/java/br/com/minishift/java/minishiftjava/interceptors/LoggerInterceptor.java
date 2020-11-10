@@ -24,12 +24,12 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
 		if (request.getHeader("X-FORWARDED-FOR") != null) {
-			log.info("Remote host:{}, port:{}", request.getRemoteHost(), request.getRemotePort());
+			log.info("remote host:{}, port:{}", request.getRemoteHost(), request.getRemotePort());
 			return true;
 		}
 
-		log.info(environment.getProperty("java.rmi.server.hostname"));
-		log.info(environment.getProperty("local.server.port"));
+		log.info("hostname:{}",environment.getProperty("java.rmi.server.hostname"));
+		log.info("serverPort:{}",environment.getProperty("local.server.port"));
 
 		try {
 			log.info(InetAddress.getLocalHost().getHostAddress());
