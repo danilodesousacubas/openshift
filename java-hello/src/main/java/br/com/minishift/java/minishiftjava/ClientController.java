@@ -13,7 +13,7 @@ public class ClientController {
 
 	@GetMapping("hello")
 	public String hello() {
-		log.info("Hello Client!");
+		log.info("Hello Client!! Rolling!!");
 		return "Hello Client";
 	}
 }
