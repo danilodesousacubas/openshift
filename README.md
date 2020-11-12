@@ -18,3 +18,8 @@ oc expose svc/java-hello-demo
 oc get routes
 
 ```
+
+
+```command
+oc start-build java-hello-demo -n sample-java
+```

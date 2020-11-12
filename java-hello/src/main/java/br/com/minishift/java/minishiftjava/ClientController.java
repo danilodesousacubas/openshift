@@ -14,6 +14,9 @@ public class ClientController {
 	@GetMapping("hello")
 	public String hello() {
 		log.info("Hello Client!! ");
+		
+		log.info("Webhook test!! ");
+		
 		return "Hello Client Rolling!!";
 	}
 }
