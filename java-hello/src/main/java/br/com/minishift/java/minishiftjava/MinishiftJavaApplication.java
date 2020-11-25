@@ -8,8 +8,5 @@ public class MinishiftJavaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MinishiftJavaApplication.class, args);
-		
-		
 	}
-
 }
