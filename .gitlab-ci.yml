@@ -20,7 +20,7 @@ deploy:install:
     - master
   artifacts:
     paths:
-     - target/*.jar
+     - clients/target/*.jar
   
 
 push:docker-hub:
