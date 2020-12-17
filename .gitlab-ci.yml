@@ -1,11 +1,9 @@
 image: maven:3.3.9-jdk-8
 
-
 variables:
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
   IMAGE: "danilodesousa/clients"
-
 
 cache:
   paths:
@@ -19,8 +17,11 @@ deploy:install:
     - master
 
 push:docker-hub:
-  stage: push
+  stage: deploy
   script:
+    - cd clients;
     - docker build -t $IMAGE:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
     - docker push $IMAGE:latest
+  only:
+    - master
