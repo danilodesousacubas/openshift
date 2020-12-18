@@ -23,3 +23,12 @@ oc get routes
 ```command
 oc start-build java-hello-demo -n sample-java
 ```
+
+# kubernets way
+
+```command
+oc apply -f clients-deployment.yaml 
+
+oc apply -f clients-service.yaml 
+
+```
