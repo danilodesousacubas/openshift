@@ -5,13 +5,13 @@ services:
 variables:
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
-  IMAGE: "danilodesousa/clients"
+  IMAGE_REPOSITORY: "danilodesousa/clients"
 
 cache:
   paths:
     - .m2/repository
 
-deploy:install:
+clients:install:
   stage: build
   image: maven:3.3.9-jdk-8
   script:
@@ -23,14 +23,25 @@ deploy:install:
      - clients/target/*.jar
     expire_in: 1 week
   
+purchase:install:
+  stage: build
+  image: maven:3.3.9-jdk-8
+  script:
+    - cd purchase; mvn clean install -U
+  only:
+    - master
+  artifacts:
+    paths:
+     - purchase/target/*.jar
+    expire_in: 1 week
 
-push:docker-hub:
+push:clients:
   stage: deploy
   script:
     - ls
     - cd clients
     - ls
-    - docker build -t $IMAGE:latest .
+    - docker build -t $IMAGE_REPOSITORY/clients:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
     - docker push $IMAGE:latest
   only:
@@ -38,4 +49,20 @@ push:docker-hub:
   artifacts:
     paths:
      - clients/target/*.jar
+    expire_in: 1 week
+
+push:purchase:
+  stage: deploy
+  script:
+    - ls
+    - cd purchase
+    - ls
+    - docker build -t $IMAGE_REPOSITORY/purhcase:latest .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
+    - docker push $IMAGE:latest
+  only:
+    - master
+  artifacts:
+    paths:
+     - purchase/target/*.jar
     expire_in: 1 week
