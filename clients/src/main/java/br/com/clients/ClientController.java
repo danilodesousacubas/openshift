@@ -26,9 +26,8 @@ public class ClientController {
 	@GetMapping
 	public List<ClientDTO> get() {
 		ClientDTO c1 = ClientDTO.builder().name("Soldado 01").email("marcos.uau@gmail.com").phone("99982-22232").build();
-		ClientDTO c2 = ClientDTO.builder().name("Soldado 02").email("marcos.aiaio@gmail.com").phone("99982-22232").build();
 		ClientDTO c3 = ClientDTO.builder().name("Soldado 03").email("camila.fugiu@gmail.com").phone("99982-11111").build();
 		ClientDTO c4 = ClientDTO.builder().name("Soldado 04").email("ana.novo@gmail.com").phone("9999-2222").build();
-		return Arrays.asList(c1, c2, c3, c4);
+		return Arrays.asList(c1, c3, c4);
 	}
 }
