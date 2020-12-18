@@ -5,7 +5,7 @@ services:
 variables:
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
-  IMAGE_REPOSITORY: "danilodesousa/clients"
+  REPOSITORY: "danilodesousa"
 
 cache:
   paths:
@@ -41,7 +41,7 @@ push:clients:
     - ls
     - cd clients
     - ls
-    - docker build -t $IMAGE_REPOSITORY/clients:latest .
+    - docker build -t $REPOSITORY/clients:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
     - docker push $IMAGE:latest
   only:
@@ -57,7 +57,7 @@ push:purchase:
     - ls
     - cd purchase
     - ls
-    - docker build -t $IMAGE_REPOSITORY/purhcase:latest .
+    - docker build -t $REPOSITORY/purhcase:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
     - docker push $IMAGE:latest
   only:
