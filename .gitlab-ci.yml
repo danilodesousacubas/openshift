@@ -27,8 +27,9 @@ deploy:install:
 push:docker-hub:
   stage: deploy
   script:
-    - pwd
-    - cd clients; ls;
+    - ls
+    - cd clients
+    - ls
     - cd clients; docker build -t $IMAGE:latest .
     - cd clients; docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
     - cd clients; docker push $IMAGE:latest
