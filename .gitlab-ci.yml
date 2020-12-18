@@ -57,7 +57,7 @@ push:purchase:
     - ls
     - cd purchase
     - ls
-    - docker build -t $REPOSITORY/purhcase:latest .
+    - docker build -t $REPOSITORY/purchase:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
     - docker push $REPOSITORY/purchase:latest
   only:
