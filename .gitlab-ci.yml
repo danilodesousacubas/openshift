@@ -21,6 +21,7 @@ deploy:install:
   artifacts:
     paths:
      - clients/target/*.jar
+    expire_in: 1 week
   
 
 push:docker-hub:
@@ -33,3 +34,7 @@ push:docker-hub:
     - cd clients; docker push $IMAGE:latest
   only:
     - master
+  artifacts:
+    paths:
+     - clients/target/*.jar
+    expire_in: 1 week
