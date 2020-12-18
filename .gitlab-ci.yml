@@ -30,9 +30,9 @@ push:docker-hub:
     - ls
     - cd clients
     - ls
-    - cd clients; docker build -t $IMAGE:latest .
-    - cd clients; docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
-    - cd clients; docker push $IMAGE:latest
+    - docker build -t $IMAGE:latest .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
+    - docker push $IMAGE:latest
   only:
     - master
   artifacts:
