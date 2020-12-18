@@ -1,4 +1,4 @@
-package br.com.minishift.java.minishiftjava.interceptors;
+package br.com.clients.interceptors;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

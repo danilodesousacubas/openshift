@@ -1,10 +1,10 @@
-package br.com.minishift.java.minishiftjava;
+package br.com.clients;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MinishiftJavaApplicationTests {
+class ClientApplicationTests {
 
 	@Test
 	void contextLoads() {

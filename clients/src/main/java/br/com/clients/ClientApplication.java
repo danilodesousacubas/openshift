@@ -1,12 +1,12 @@
-package br.com.minishift.java.minishiftjava;
+package br.com.clients;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MinishiftJavaApplication {
+public class ClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MinishiftJavaApplication.class, args);
+		SpringApplication.run(ClientApplication.class, args);
 	}
 }

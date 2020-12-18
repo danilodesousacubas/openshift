@@ -1,4 +1,4 @@
-package br.com.minishift.java.minishiftjava.dto;
+package br.com.clients.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

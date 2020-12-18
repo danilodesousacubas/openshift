@@ -1,4 +1,4 @@
-package br.com.minishift.java.minishiftjava.interceptors;
+package br.com.clients.interceptors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
