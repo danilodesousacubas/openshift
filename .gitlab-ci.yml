@@ -43,7 +43,7 @@ push:clients:
     - ls
     - docker build -t $REPOSITORY/clients:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
-    - docker push $IMAGE:latest
+    - docker push $REPOSITORY:latest
   only:
     - master
   artifacts:
@@ -59,7 +59,7 @@ push:purchase:
     - ls
     - docker build -t $REPOSITORY/purhcase:latest .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD "docker.io"
-    - docker push $IMAGE:latest
+    - docker push $REPOSITORY:latest
   only:
     - master
   artifacts:
