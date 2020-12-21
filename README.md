@@ -48,6 +48,8 @@ oc start-build java-hello-demo -n sample-java
 
 ```command
 
+oc project sample-java
+
 oc apply -f clients-deployment.yaml 
 
 oc apply -f clients-service.yaml 
