@@ -1,3 +1,22 @@
+
+# security 
+
+```command
+
+oc get scc
+
+use dockerfile
+
+ARG user=clients
+ARG group=clients
+ARG uid=1000
+ARG gid=1000
+ARG http_port=8080
+ARG agent_port=50000
+
+```
+
+
 # openshift sample commands
 
 ```command
