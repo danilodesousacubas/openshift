@@ -79,7 +79,7 @@ k8s-create-cluster:
     - gcloud auth activate-service-account --key-file key.json
     - gcloud container clusters create master --zone us-central1-a --project clients --enable-autoscaling --max-nodes=3 --min-nodes=1 --machine-type=n1-standard-2
   only:
-    - production
+    - master
   when: manual
   allow_failure: true
 
@@ -92,7 +92,7 @@ k8s-deploy-production:
     - kubectl --namespace=default apply -f clients-deployment.yaml
     - kubectl --namespace=default apply -f purchase-deployment.yaml
   only:
-    - production
+    - master
   allow_failure: true
 
 
