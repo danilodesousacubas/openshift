@@ -29,7 +29,7 @@ clients:install:
     expire_in: 1 week
   
 purchase:install:
-  stage: push
+  stage: build
   image: maven:3.3.9-jdk-8
   script:
     - cd purchase; mvn clean install -U
@@ -41,7 +41,7 @@ purchase:install:
     expire_in: 1 week
 
 push:clients:
-  stage: deploy
+  stage: push
   script:
     - ls
     - cd clients
