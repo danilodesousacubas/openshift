@@ -29,7 +29,7 @@ clients:install:
     expire_in: 1 week
   
 purchase:install:
-  stage: build
+  stage: push
   image: maven:3.3.9-jdk-8
   script:
     - cd purchase; mvn clean install -U
@@ -57,7 +57,7 @@ push:clients:
     expire_in: 1 week
 
 push:purchase:
-  stage: deploy
+  stage: push
   script:
     - ls
     - cd purchase
@@ -74,7 +74,7 @@ push:purchase:
 
 k8s-create-cluster:
   image: google/cloud-sdk
-  stage: create-cluster
+  stage: deploy
   script:
     - gcloud auth activate-service-account --key-file key.json
     - gcloud container clusters create master --zone us-central1-a --project clients --enable-autoscaling --max-nodes=3 --min-nodes=1 --machine-type=n1-standard-2
@@ -84,8 +84,8 @@ k8s-create-cluster:
   allow_failure: true
 
 k8s-deploy-production:
-  image: google/cloud-sdk
   stage: deploy
+  image: google/cloud-sdk
   script:
     - gcloud auth activate-service-account --key-file key.json
     - gcloud container clusters get-credentials master --zone us-central1-a --project clients
@@ -93,5 +93,6 @@ k8s-deploy-production:
     - kubectl --namespace=default apply -f purchase-deployment.yaml
   only:
     - production
+  allow_failure: true
 
 
