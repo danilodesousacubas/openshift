@@ -1,3 +1,8 @@
+stages:
+  - build
+  - deploy
+  - push
+
 image: docker:latest
 services:
   - docker:dind
@@ -66,3 +71,27 @@ push:purchase:
     paths:
      - purchase/target/*.jar
     expire_in: 1 week
+
+k8s-create-cluster:
+  image: google/cloud-sdk
+  stage: create-cluster
+  script:
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud container clusters create master --zone us-central1-a --project clients --enable-autoscaling --max-nodes=3 --min-nodes=1 --machine-type=n1-standard-2
+  only:
+    - production
+  when: manual
+  allow_failure: true
+
+k8s-deploy-production:
+  image: google/cloud-sdk
+  stage: deploy
+  script:
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud container clusters get-credentials master --zone us-central1-a --project clients
+    - kubectl --namespace=default apply -f clients-deployment.yaml
+    - kubectl --namespace=default apply -f purchase-deployment.yaml
+  only:
+    - production
+
+
