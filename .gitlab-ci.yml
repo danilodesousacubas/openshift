@@ -93,6 +93,7 @@ k8s-deploy-production:
     - kubectl --namespace=default apply -f purchase-deployment.yaml
   only:
     - master
+  when: manual
   allow_failure: true
 
 
