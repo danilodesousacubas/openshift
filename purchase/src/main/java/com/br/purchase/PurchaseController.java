@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/purchases")
 public class PurchaseController {
-
 	
 	@GetMapping("{id}")
 	public PurchaseDTO getById(@PathParam("id") Long id) {
@@ -28,8 +27,9 @@ public class PurchaseController {
 		
 		PurchaseDTO p1 = PurchaseDTO.builder().id(1002L).totalValue(new Double(223.32)).clientId(1L).build();
 		PurchaseDTO p2 = PurchaseDTO.builder().id(1088L).totalValue(new Double(781.91)).clientId(2L).build();
-		
-		return Arrays.asList(p1, p2);
+		PurchaseDTO p3 = PurchaseDTO.builder().id(1088L).totalValue(new Double(888.91)).clientId(2L).build();
+
+		return Arrays.asList(p1, p2, p3);
 	}
 	
 }
