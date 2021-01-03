@@ -6,7 +6,13 @@ sudo mv ./kubectl /usr/local/bin/
 
 kubectl version --client
 
+su root
+
+minikube start --vm-driver=none
+
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.10.0/minikube-linux-amd64 && chmod +x minikube && sudo cp minikube /usr/local/bin/ && rm minikube
+
+sudo apt-get install conntrack
 
 sudo mv /root/.kube $HOME/.kube
 sudo chown -R $USER $HOME/.kube
@@ -16,9 +22,7 @@ sudo mv /root/.minikube $HOME/.minikube
 sudo chown -R $USER $HOME/.minikube
 sudo chgrp -R $USER $HOME/.minikube
 
-minikube start --vm-driver=none (--vm-driver=nome -> only root)
-
-vi .kube/config (change /root to $HOME/$USER)
+vi .kube/config (change /root to $HOME/$USER) certificate-authority and client-certificate
 
 apiVersion: v1
 clusters:
@@ -40,7 +44,5 @@ users:
     client-certificate: /root/.minikube/profiles/minikube/client.crt
     client-key: /root/.minikube/profiles/minikube/client.key
 
-
-test:
 kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
 kubectl expose deployment hello-minikube --type=NodePort --port=8080
