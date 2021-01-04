@@ -7,7 +7,7 @@ spec:
     matchLabels:
       app: clients
       tier: backend
-  replicas: 3
+  replicas: 1
   
   template:
     metadata:

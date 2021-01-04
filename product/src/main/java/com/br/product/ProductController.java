@@ -41,11 +41,11 @@ public class ProductController {
 	
 	@PostMapping("/clients")
 	public ClientDTO clients() {
-		log.info("Products Client By Service Name");
+		log.info("Products Client By Service Name 111");
 		
 		RestTemplate restTemplate = new RestTemplate();
 //		String url = "http://clients-sample-java.192.168.99.100.nip.io";
-		String url = "http://sample-java:4000";
+		String url = "http://clients:8080";
 		ClientDTO client = restTemplate.getForObject(url + "/clients/1", ClientDTO.class);
 		
 		return client;

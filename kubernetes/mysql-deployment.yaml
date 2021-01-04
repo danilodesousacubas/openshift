@@ -1,4 +1,19 @@
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv-claim
+  labels:
+    type: local
+spec:
+  storageClassName: local-storage
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/pv1"
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: mysql
@@ -25,12 +40,12 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql:5.6
+      - image: mysql:latest
         name: mysql
         env:
           # Use secret in real usage
-        - name: MYSQL_ROOT_PASSWORD
-          value: password
+        - name: root
+          value: root
         ports:
         - containerPort: 3306
           name: mysql

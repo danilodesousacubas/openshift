@@ -1,4 +1,4 @@
-package br.com.clients.interceptors;
+package br.com.clients.interceptor;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
